@@ -34,18 +34,6 @@
             android:layout_toRightOf="@id/cardImg"
             android:textSize="15sp"/>
 
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:id="@+id/cardClick"
-            android:gravity="center"
-            android:text="SHOW"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:textSize="8dp"
-            android:layout_below="@+id/cardDesc"
-            android:layout_alignBottom="@+id/cardImg"/>
-
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

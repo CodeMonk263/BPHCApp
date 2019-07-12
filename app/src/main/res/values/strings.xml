@@ -20,6 +20,26 @@
     <string name="nearby_places">Nearby Places</string>
     <string name="username"> User </string>
     <string name="emailid"> f201xxxx@hyderabad.bits-pilani.ac.in </string>
+
+    <string name="timing1">8-9</string>
+    <string name="timing2">9-10</string>
+    <string name="timing3">10-11</string>
+    <string name="timing4">11-12</string>
+    <string name="timing5">12-1</string>
+    <string name="timing6">1-2</string>
+    <string name="timing7">2-3</string>
+    <string name="timing8">3-4</string>
+    <string name="timing9">4-5</string>
+
+    <string name="monday"> MON </string>
+    <string name="tuesday"> TUE </string>
+    <string name="wednesday"> WED </string>
+    <string name="thursday"> THU </string>
+    <string name="friday"> FRI </string>
+    <string name="saturday"> SAT </string>
+
+    <string name="layoutWidth"> 59dp </string>
+
     <string-array name="titleList">
         <item> TimeTable </item>
         <item> Subjects </item>

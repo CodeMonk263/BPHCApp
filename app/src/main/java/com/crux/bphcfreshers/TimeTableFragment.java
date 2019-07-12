@@ -1,16 +1,21 @@
 package com.crux.bphcfreshers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +44,25 @@ public class TimeTableFragment extends Fragment {
 
         ListAdapter listAdapter = new ListAdapter(getContext(), title, description);
         timetableList.setAdapter(listAdapter);
+
+        timetableList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0: {
+                        Intent intent = new Intent(getContext(), timetableView.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case 1: {
+                        Intent intent = new Intent(getContext(), Subject.class);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+            }
+        });
+
     }
 
     public class ListAdapter extends BaseAdapter{

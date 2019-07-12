@@ -27,7 +27,7 @@ import android.view.Menu;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public void TimeTable (String url) {
+    public void URLopener (String url) {
 
         CustomTabsIntent customTabsIntent;
         final CustomTabsClient[] customTabsClient = new CustomTabsClient[1];
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.libInfo) {
 
         } else if (id == R.id.accInfo) {
-            TimeTable("http://swd.bits-hyderabad.ac.in/");
+            URLopener("http://swd.bits-hyderabad.ac.in/");
         } else if (id == R.id.timeTable) {
             fragment = new TimeTableFragment();
         } else if (id == R.id.nav_share) {
