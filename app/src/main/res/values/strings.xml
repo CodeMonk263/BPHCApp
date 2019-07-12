@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">BPHC Freshers</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,4 +18,16 @@
     <string name="history">History</string>
     <string name="clubs_and_departments">Clubs and Departments</string>
     <string name="nearby_places">Nearby Places</string>
+    <string name="username"> User </string>
+    <string name="emailid"> f201xxxx@hyderabad.bits-pilani.ac.in </string>
+    <string-array name="titleList">
+        <item> TimeTable </item>
+        <item> Subjects </item>
+    </string-array>
+
+    <string-array name="descriptionList">
+        <item> Check out all your classes and their rooms and timings </item>
+        <item> Check out all the courses you are enrolled to </item>
+    </string-array>
+
 </resources>
