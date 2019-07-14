@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/fg1_textView1"
-        android:layout_width="match_parent"
-        android:layout_height="267dp"
-        android:gravity="center"
-        android:text="This is the Campus Map"
-        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/fg1_ImageView1"
         android:layout_width="match_parent"
-        android:layout_height="274dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bphcmap" />
 
-    <Button
-        android:id="@+id/fg1_button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="buttonFunc"
-        android:text="Click if this is Cool" />
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
