@@ -227,7 +227,11 @@
       </list>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectFrameBounds" extendedState="6">
+=======
+  <component name="ProjectFrameBounds" extendedState="7">
+>>>>>>> Stashed changes
     <option name="y" value="26" />
     <option name="width" value="1319" />
     <option name="height" value="682" />
