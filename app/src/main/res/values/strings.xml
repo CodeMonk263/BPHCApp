@@ -38,6 +38,11 @@
     <string name="friday"> FRI </string>
     <string name="saturday"> SAT </string>
 
+    <string name="timing_breakfast"> 7:30am-9:30am </string>
+    <string name="timing_lunch"> 11:30am-2:30pm </string>
+    <string name="timing_snacks"> 4:30pm-6:30pm </string>
+    <string name="timing_dinner"> 7:30pm-9:30pm </string>
+
     <string name="layoutWidth"> 59dp </string>
 
     <string-array name="titleList">

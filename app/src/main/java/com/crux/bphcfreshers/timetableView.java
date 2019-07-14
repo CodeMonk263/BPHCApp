@@ -1,9 +1,14 @@
 package com.crux.bphcfreshers;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +18,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class timetableView extends AppCompatActivity {
+
+    SQLiteDatabase timeTableDB;
 
     public ArrayList<ArrayList<Button>> buttonsArray = new ArrayList<>(6);
 
@@ -91,7 +98,7 @@ public class timetableView extends AppCompatActivity {
 
     }
 
-    public void createAlert(final Button tempButton) {
+    public void createAlert(final Button tempButton, final SQLiteDatabase myDB, final int day, final int hour) {
 
         final EditText[] input = new EditText[2];
 
@@ -139,22 +146,43 @@ public class timetableView extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 input_Text[0] = input[0].getText().toString();
                 input_Text[1] = input[1].getText().toString();
+
                 String finalText = input_Text[0] + "\n" +input_Text[1];
                 tempButton.setText(finalText);
                 tempButton.setTextSize(12);
                 tempButton.animate().alpha(1).setDuration(100);
 
+                myDB.execSQL("INSERT INTO timetabledata (course, classroom, day, hour) VALUES ('" + input_Text[0] + "','" + input_Text[1] + "'," + day + "," + hour + ")");
+
             }
         });
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("DELETE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                tempButton.animate().alpha(0.1f).setDuration(100);
+                tempButton.setText("ADD");
+                myDB.execSQL("DELETE FROM timetabledata WHERE day = '" + day +"' AND hour = '" + hour + "'");
             }
         });
 
         builder.create().show();
+
+    }
+
+    public void createDB () {
+
+        Log.i("created db", "Created");
+
+        try {
+
+            timeTableDB = timetableView.this.openOrCreateDatabase("TimeTable", MODE_PRIVATE, null );
+            timeTableDB.execSQL("CREATE TABLE IF NOT EXISTS timetabledata (course VARCHAR, classroom VARCHAR, day INT(2), hour INT(2))");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -163,24 +191,88 @@ public class timetableView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable_view);
 
+        Log.i("Start works", "Working");
+
+        createDB();
+
         createButtonsArray();
 
         for (int i=0; i<6; i++) {
 
             for (int j=0; j<9; j++) {
 
+                Log.i("Main Loop Works", "Working");
+
                 final Button tempButton = buttonsArray.get(i).get(j);
 
+                Cursor c = timeTableDB.rawQuery("SELECT * FROM timetabledata", null);
+                int courseIndex = c.getColumnIndex("course");
+                int classroomIndex = c.getColumnIndex("classroom");
+                int dayIndex = c.getColumnIndex("day");
+                int hourIndex = c.getColumnIndex("hour");
+
+                final int tempDay = i;
+                final int tempHour = j;
+
+                if (c.moveToFirst()) {
+                    do{
+                        if (tempDay == c.getInt(dayIndex) && tempHour == c.getInt(hourIndex)) {
+                            Log.i("If works", "Working");
+                            String finalText = c.getString(courseIndex) + "\n" + c.getString(classroomIndex);
+                            tempButton.setText(finalText);
+                            tempButton.setTextSize(12);
+                            tempButton.animate().alpha(1).setDuration(100);
+                        }
+                        else {
+                            Log.i("Else works", "Working");
+                            tempButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    createAlert(tempButton, timeTableDB, tempDay, tempHour);
+                                }
+                            });
+                        }
+                    } while (c.moveToNext());
+                }
+                c.close();
+
+                Log.i("Else works", "Working");
                 tempButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        createAlert(tempButton);
-
+                        createAlert(tempButton, timeTableDB, tempDay, tempHour);
                     }
                 });
             }
         }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.timetable_reset_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.reset:
+                Log.i("sdfsd", "fdsdf");
+                timeTableDB.execSQL("DROP TABLE IF EXISTS timetabledata");
+
+                for (int i=0; i<6; i++) {
+                    for (int j=0; j<9; j++) {
+                        Button resetButton = buttonsArray.get(i).get(j);
+                        resetButton.animate().alpha(0.1f).setDuration(10);
+                        resetButton.setText("ADD");
+                    }
+                }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
