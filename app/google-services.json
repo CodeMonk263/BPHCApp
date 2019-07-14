@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "232734954446",
+    "firebase_url": "https://bphcapp.firebaseio.com",
+    "project_id": "bphcapp",
+    "storage_bucket": "bphcapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232734954446:android:2040ff7c82ba921c",
+        "android_client_info": {
+          "package_name": "com.crux.bphcfreshers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232734954446-lp1s309k8ucjbj5cjs1tq4fabuu8oja9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.crux.bphcfreshers",
+            "certificate_hash": "2c09921f65d6573349bf3cce4b8e9c8731f3d1f8"
+          }
+        },
+        {
+          "client_id": "232734954446-mp6ee7foaulj1kndb0foll720cgjqcdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqPsOyVtLQbMWlpdH7ECPVptCxsK6Pzv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232734954446-mp6ee7foaulj1kndb0foll720cgjqcdd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
