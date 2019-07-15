@@ -1,6 +1,7 @@
 package com.crux.bphcfreshers;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class CInfoFragment extends Fragment {
+public class CInfoFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
     @Override
@@ -21,6 +23,54 @@ public class CInfoFragment extends Fragment {
 //        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button Bhistory = view.findViewById(R.id.button5);
+        Button Bc_d = view.findViewById(R.id.button6);
+        Button Bnearby = view.findViewById(R.id.button7);
+        Bhistory.setOnClickListener(this);
+        Bc_d.setOnClickListener(this);
+        Bnearby.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button5:
+                openHistory();
+                break;
+            case R.id.button6:
+               openClub();
+                break;
+            case R.id.button7:
+               openNearby();
+                break;
+        }
+    }
+
+    public void openHistory() {
+        Intent intent = new Intent(CInfoFragment.this.getActivity(), History.class);
+        startActivity(intent);
+
+
+    }
+    public void openClub() {
+        Intent intent = new Intent(CInfoFragment.this.getActivity(), clubdep.class);
+        startActivity(intent);
+
+
+    }
+
+    public void openNearby() {
+        Intent intent = new Intent(CInfoFragment.this.getActivity(), nearby.class);
+        startActivity(intent);
+
+
+    }
+
 
 }
-

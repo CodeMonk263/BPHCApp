@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".nearby"></activity>
+        <activity android:name=".clubdep" />
+        <activity
+            android:name=".History"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Subject" />
         <activity android:name=".timetableView" />
         <activity
