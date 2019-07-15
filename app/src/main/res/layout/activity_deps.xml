@@ -15,12 +15,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/textView29"
-                android:layout_width="370dp"
-                android:layout_height="84dp"
-                android:layout_marginStart="11dp"
-                android:layout_marginTop="46dp"
+                android:id="@+id/editText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
                 android:text="Departments"
                 android:textAlignment="center"
                 android:textSize="50sp" />
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="Button" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText3"
                 android:layout_width="match_parent"
                 android:layout_height="109dp"
