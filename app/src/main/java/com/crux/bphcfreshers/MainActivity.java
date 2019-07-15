@@ -1,6 +1,7 @@
 package com.crux.bphcfreshers;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -104,7 +105,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.cinfo) {
             fragment = new CInfoFragment();
         }else if (id == R.id.campusMap) {
-            fragment = new CampusMapFragment();
+            Intent intent=new Intent(MainActivity.this,BPHCMAP.class);
+            startActivity(intent);
         } else if (id == R.id.messInfo) {
             fragment = new MessInfoFragment();
         } else if (id == R.id.libInfo) {

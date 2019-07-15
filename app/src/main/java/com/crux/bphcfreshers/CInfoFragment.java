@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class CInfoFragment extends Fragment implements View.OnClickListener {
 
@@ -66,7 +65,7 @@ public class CInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     public void openNearby() {
-        Intent intent = new Intent(CInfoFragment.this.getActivity(), nearby.class);
+        Intent intent = new Intent(CInfoFragment.this.getActivity(), Fests.class);
         startActivity(intent);
 
 
