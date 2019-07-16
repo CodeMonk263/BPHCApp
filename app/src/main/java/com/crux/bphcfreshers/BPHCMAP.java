@@ -40,8 +40,6 @@ public class BPHCMAP extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         LatLng MBPHC = new LatLng(17.544743, 78.572140);
         mMap.addMarker(new MarkerOptions().position(MBPHC).title("Welcome to BPHC"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MBPHC,16F));

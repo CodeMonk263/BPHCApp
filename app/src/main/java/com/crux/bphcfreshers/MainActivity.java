@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         customTabsIntent.launchUrl(this, Uri.parse(url));
 
     }
-
+private boolean mLocationPermissionGranted = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
