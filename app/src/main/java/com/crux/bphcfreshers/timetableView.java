@@ -3,8 +3,8 @@ package com.crux.bphcfreshers;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,11 +15,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 
 public class timetableView extends AppCompatActivity {
 
     SQLiteDatabase timeTableDB;
+    private StorageReference mStorageRef;
+
 
     public ArrayList<ArrayList<Button>> buttonsArray = new ArrayList<>(6);
 
@@ -190,6 +195,7 @@ public class timetableView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable_view);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         Log.i("Start works", "Working");
 
@@ -245,6 +251,7 @@ public class timetableView extends AppCompatActivity {
                 });
             }
         }
+
 
     }
 

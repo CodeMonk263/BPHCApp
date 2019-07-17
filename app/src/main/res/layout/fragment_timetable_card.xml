@@ -1,4 +1,4 @@
-<android.support.v7.widget.CardView android:layout_height="wrap_content"
+<androidx.cardview.widget.CardView android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="@color/colorAccent"
     android:elevation="4dp"
@@ -36,4 +36,4 @@
 
     </RelativeLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

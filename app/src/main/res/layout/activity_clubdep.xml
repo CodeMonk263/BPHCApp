@@ -4,33 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clubdep">
+    tools:context=".clubdep"
+    android:background="@drawable/clubbdepp">
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="match_parent"
+        android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="0dp"
-        android:text="This is Cub and Dep.Thre are many clubs and deps to choose from."
-        android:textSize="50sp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="This is Club and Dep.Thre are many clubs and deps to choose from."
+        android:textColor="#201F1F"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="87dp" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-8dp"
+        android:layout_marginTop="-3dp">
 
         <Button
             android:id="@+id/Bdep"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_width="313dp"
+            android:layout_height="76dp"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="105dp"
+            android:background="@drawable/buttonbg"
             android:text="Departments"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,15 +47,16 @@
 
         <Button
             android:id="@+id/Bclub"
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_width="311dp"
+            android:layout_height="82dp"
             android:layout_marginTop="423dp"
             android:layout_marginBottom="64dp"
+            android:background="@drawable/buttonbg"
             android:text="Clubs"
             app:layout_constraintBottom_toTopOf="@+id/Bdep"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
