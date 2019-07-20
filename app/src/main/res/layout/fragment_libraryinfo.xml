@@ -9,19 +9,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="169dp"
-        android:layout_height="319dp"
+        android:layout_width="170dp"
+        android:layout_height="338dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="92dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/libButton"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.01999998">
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <TextView
             android:id="@+id/textView7"
@@ -102,28 +99,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <Button
         android:id="@+id/libButton"
-        android:layout_width="275dp"
-        android:layout_height="89dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="150dp"
+        android:layout_width="235dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/buttonbg"
-        android:gravity="center"
-        android:scrollbarSize="20dp"
-        android:text="Library Website"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:text="Library website"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -132,15 +120,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="-300dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="27dp"
-        android:layout_marginBottom="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/libButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <TextView
             android:id="@+id/textView14"

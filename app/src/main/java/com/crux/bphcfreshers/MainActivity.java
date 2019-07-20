@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsClient;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
@@ -14,8 +16,31 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,9 +48,12 @@ import androidx.appcompat.widget.Toolbar;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
-    public void URLopener (String url) {
+
+
+
+    public void URLopener(String url) {
 
         CustomTabsIntent customTabsIntent;
         final CustomTabsClient[] customTabsClient = new CustomTabsClient[1];
@@ -52,13 +80,15 @@ public class MainActivity extends AppCompatActivity
         CustomTabsClient.bindCustomTabsService(this, String.valueOf(R.layout.activity_main), customTabsServiceConnection);
         customTabsIntent = new CustomTabsIntent.Builder(customTabsSession[0])
                 .setShowTitle(true)
-                .setToolbarColor(Color.rgb(80,70,250))
+                .setToolbarColor(Color.rgb(80, 70, 250))
                 .build();
 
         customTabsIntent.launchUrl(this, Uri.parse(url));
 
     }
-private boolean mLocationPermissionGranted = false;
+
+    private boolean mLocationPermissionGranted = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +110,12 @@ private boolean mLocationPermissionGranted = false;
         fragmentTransaction.commit();
 
 
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -103,19 +138,20 @@ private boolean mLocationPermissionGranted = false;
 
         if (id == R.id.cinfo) {
             fragment = new CInfoFragment();
-        }else if (id == R.id.campusMap) {
-            Intent intent=new Intent(MainActivity.this,BPHCMAP.class);
+        } else if (id == R.id.campusMap) {
+            Intent intent = new Intent(MainActivity.this, BPHCMap.class);
             startActivity(intent);
         } else if (id == R.id.messInfo) {
             fragment = new MessInfoFragment();
-        } else if (id == R.id.libInfo) {
+        } else if (id == R.id.libinfo) {
             fragment = new LibraryInfoFrag();
         } else if (id == R.id.accInfo) {
             URLopener("http://swd.bits-hyderabad.ac.in/");
         } else if (id == R.id.timeTable) {
             fragment = new TimeTableFragment();
         } else if (id == R.id.signIn) {
-            fragment = new signInFragment();
+            Intent intent = new Intent(MainActivity.this, GSigni.class);
+            startActivity(intent);
         }
 
         if (fragment != null) {
@@ -129,4 +165,9 @@ private boolean mLocationPermissionGranted = false;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
+
+
