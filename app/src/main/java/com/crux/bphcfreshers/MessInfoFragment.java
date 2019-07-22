@@ -2,6 +2,8 @@ package com.crux.bphcfreshers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,12 +28,15 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MessInfoFragment extends Fragment {
 
     private TextToSpeech myTTS;
     private FloatingActionButton messInfoButton;
     private SpeechRecognizer mySpeechRec;
     Calendar calendar;
+    SQLiteDatabase messDB;
 
     @Nullable
     @Override
@@ -56,6 +62,54 @@ public class MessInfoFragment extends Fragment {
         });
         initializeTextToSpeech();
         initializeSpeechRec();
+        createMessDB();
+    }
+
+    private void createMessDB() {
+
+        try {
+
+            messDB = getContext().openOrCreateDatabase("MessMenu", MODE_PRIVATE, null );
+            messDB.execSQL("CREATE TABLE IF NOT EXISTS messmenudata (day INT(1), breakfast VARCHAR, lunch VARCHAR, snacks VARCHAR, dinner VARCHAR)");
+//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (1," +
+//                    "''," +
+//                    "''," +
+//                    "''," +
+//                    "'')");
+            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (2," +
+                    "'Milk, Tea, Coffee, Sprouts Mysore Bonda/Punugulu, Chutney Onion Aloo Parantha, Curd, Pickel Bread Butter Bournvita'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Papad/Fryums, Chutney Matar Pulao, Arhar Dal, Chole, Bhindi Fry, Methi Puri, Boondi Raita'," +
+                    "'Milk, Tea, Coffee Rusk Pasta (Red/White) (Alternate)'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Pickle, Tomato Dal, Malai Kofta / Mattar Malai , Ridge guard dry Besan Barfi')");
+            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (3," +
+                    "'Milk, Tea, Coffee, Sweet Corn Rawa Idli, Sambhar, Chutney, Stuffed Kulcha, Curd Bread Butter Boiled Egg/Banana'," +
+                    "'Salad, Roti, Steamed Rice, Curd, Sambhar/Rasam, Papad/Fryums, Chutney Veg pullav, Jeera Dal Fry, Black Channa Masala(curry), Corn Palak Gulab Jamun'," +
+                    "'Milk, Tea, Coffee Biscuits Pani Puri / Dahi Bhalla Papdi Chaat (Alternate)'," +
+                    "'Salad, Roti, Steamed Rice, Curd, Sambhar/Rasam, Pickel Kashmiri Pulao, Dal Tadka, Kadhai Paneer, Butter Chicken, Veg biryani, Boondi Raita Rice Kheer')");
+//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (4," +
+//                    "''," +
+//                    "''," +
+//                    "''," +
+//                    "'')");
+//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (5," +
+//                    "''," +
+//                    "''," +
+//                    "''," +
+//                    "'')");
+//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (6," +
+//                    "''," +
+//                    "''," +
+//                    "''," +
+//                    "'')");
+//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (7," +
+//                    "''," +
+//                    "''," +
+//                    "''," +
+//                    "'')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void initializeSpeechRec() {
@@ -111,17 +165,58 @@ public class MessInfoFragment extends Fragment {
     }
 
     private void processResult(String command) {
+
+        Calendar calendar = Calendar.getInstance();
+        int curr_day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        Cursor c = messDB.rawQuery("SELECT * FROM messmenudata", null);
+
+        int dayIndex = c.getColumnIndex("day");
+        int breakfastIndex = c.getColumnIndex("breakfast");
+        int lunchIndex = c.getColumnIndex("lunch");
+        int snackIndex = c.getColumnIndex("snacks");
+        int dinnerIndex = c.getColumnIndex("dinner");
+
         command = command.toLowerCase();
+
         Toast.makeText(getContext(), command, Toast.LENGTH_SHORT).show();
 //        if (command == "today" || command == "today's") {
             if (command.equals("breakfast")) {
-                convertTextToSpeech("shit");
+                if (c.moveToFirst()) {
+                    do{
+                        if (c.getInt(dayIndex) == (curr_day)) {
+                            convertTextToSpeech(c.getString(breakfastIndex));
+                        }
+                    } while (c.moveToNext());
+                }
+                c.close();
             } else if (command.equals("lunch")) {
-                convertTextToSpeech("shit");
+                if (c.moveToFirst()) {
+                    do{
+                        if (c.getInt(dayIndex) == (curr_day)) {
+                            convertTextToSpeech(c.getString(lunchIndex));
+                        }
+                    } while (c.moveToNext());
+                }
+                c.close();
             } else if (command.equals("snacks")) {
-                convertTextToSpeech("shit");
+                if (c.moveToFirst()) {
+                    do{
+                        if (c.getInt(dayIndex) == (curr_day)) {
+                            convertTextToSpeech(c.getString(snackIndex));
+                        }
+                    } while (c.moveToNext());
+                }
+                c.close();
             } else if (command.equals("dinner")) {
-                convertTextToSpeech("shit");
+                if (c.moveToFirst()) {
+                    do{
+                        if (c.getInt(dayIndex) == (curr_day)) {
+                            convertTextToSpeech(c.getString(dinnerIndex));
+                        }
+                    } while (c.moveToNext());
+                }
+                c.close();
             } else {
                 convertTextToSpeech("Wrong Input");
             }
@@ -136,7 +231,7 @@ public class MessInfoFragment extends Fragment {
                 if (myTTS.getEngines().size() == 0) {
                     Toast.makeText(getContext(), "No TTS Engine Found", Toast.LENGTH_SHORT).show();
                 } else {
-                    myTTS.setLanguage(Locale.US);
+                    myTTS.setLanguage(Locale.ENGLISH);
                     convertTextToSpeech("Which meal's menu would u like to know about today?");
                 }
             }
@@ -151,5 +246,6 @@ public class MessInfoFragment extends Fragment {
     public void onPause() {
         super.onPause();
         myTTS.shutdown();
+        messDB.execSQL("DROP TABLE IF EXISTS messmenudata");
     }
 }
