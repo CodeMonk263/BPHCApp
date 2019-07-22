@@ -149,9 +149,8 @@ public class MainActivity extends AppCompatActivity
             URLopener("http://swd.bits-hyderabad.ac.in/");
         } else if (id == R.id.timeTable) {
             fragment = new TimeTableFragment();
-        } else if (id == R.id.signIn) {
-            Intent intent = new Intent(MainActivity.this, GSigni.class);
-            startActivity(intent);
+        } else if (id == R.id.erp) {
+            URLopener("https://erp.bits-pilani.ac.in:4431/psp/hcsprod/?cmd=login&languageCd=ENG");
         }
 
         if (fragment != null) {

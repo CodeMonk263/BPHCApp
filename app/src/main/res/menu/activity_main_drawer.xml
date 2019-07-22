@@ -18,7 +18,7 @@
             android:title="Mess Info" />
         <item
             android:id="@+id/libinfo"
-            android:icon="@drawable/ic_local_dining_black_24dp"
+            android:icon="@drawable/ic_library_books_black_24dp"
             android:title="Library Info" />
 
         <item
@@ -38,9 +38,9 @@
                 android:icon="@drawable/ic_account_box_black_24dp"
                 android:title="SWD Account" />
             <item
-                android:id="@+id/signIn"
-                android:icon="@drawable/ic_save_black_24dp"
-                android:title="Sign-In" />
+                android:id="@+id/erp"
+                android:icon="@drawable/ic_account_balance_black_24dp"
+                android:title="ERP" />
         </menu>
     </item>
 

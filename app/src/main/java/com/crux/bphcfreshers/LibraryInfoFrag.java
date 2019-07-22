@@ -63,7 +63,7 @@ public class   LibraryInfoFrag extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button libButton = view.findViewById(R.id.libButton);
+        Button libButton = view.findViewById(R.id.libInfo);
 
         libButton.setOnClickListener(new View.OnClickListener() {
             @Override
