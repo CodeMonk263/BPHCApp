@@ -1,13 +1,20 @@
 package com.crux.bphcfreshers;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.speech.RecognitionListener;
@@ -37,6 +44,7 @@ public class MessInfoFragment extends Fragment {
     private SpeechRecognizer mySpeechRec;
     Calendar calendar;
     SQLiteDatabase messDB;
+    private int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
 
     @Nullable
     @Override
@@ -53,6 +61,7 @@ public class MessInfoFragment extends Fragment {
         messInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkPermission();
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -63,6 +72,51 @@ public class MessInfoFragment extends Fragment {
         initializeTextToSpeech();
         initializeSpeechRec();
         createMessDB();
+    }
+
+    private void checkPermission() {
+
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {}
+        else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.RECORD_AUDIO)) {
+                createDialog("Permission Needed", "You need to enable microphone for the app to recognize your voice commands!", "OK", "CANCEL");
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
+            }
+        }
+    }
+
+    private void createDialog(String title, String message, String positiveText, String negativeText) {
+
+        new AlertDialog.Builder(getContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(positiveText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
+                    }
+                })
+                .setNegativeButton(negativeText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create().show();
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_RECORD_AUDIO) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Permission Denied Try Again", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void createMessDB() {
@@ -246,6 +300,6 @@ public class MessInfoFragment extends Fragment {
     public void onPause() {
         super.onPause();
         myTTS.shutdown();
-        messDB.execSQL("DROP TABLE IF EXISTS messmenudata");
+//        messDB.execSQL("DROP TABLE IF EXISTS messmenudata");
     }
 }
