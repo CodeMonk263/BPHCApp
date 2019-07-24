@@ -41,6 +41,10 @@
                 android:id="@+id/erp"
                 android:icon="@drawable/ic_account_balance_black_24dp"
                 android:title="ERP" />
+            <item
+                android:id="@+id/facebook"
+                android:icon="@drawable/ic_people_black_24dp"
+                android:title="Facebook" />
         </menu>
     </item>
 

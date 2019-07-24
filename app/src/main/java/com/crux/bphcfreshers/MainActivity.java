@@ -152,6 +152,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.erp) {
             URLopener("https://erp.bits-pilani.ac.in:4431/psp/hcsprod/?cmd=login&languageCd=ENG");
         }
+        else if (id == R.id.facebook) {
+            Intent intent = new Intent(MainActivity.this, FacebookLinks.class);
+            startActivity(intent);
+        }
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();

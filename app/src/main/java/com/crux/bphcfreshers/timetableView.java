@@ -1,6 +1,10 @@
 package com.crux.bphcfreshers;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AlertDialog;
@@ -11,14 +15,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class timetableView extends AppCompatActivity {
 
@@ -203,9 +212,9 @@ public class timetableView extends AppCompatActivity {
 
         createButtonsArray();
 
-        for (int i=0; i<6; i++) {
+        for (int i = 0; i < 6; i++) {
 
-            for (int j=0; j<9; j++) {
+            for (int j = 0; j < 9; j++) {
 
                 Log.i("Main Loop Works", "Working");
 
@@ -221,15 +230,14 @@ public class timetableView extends AppCompatActivity {
                 final int tempHour = j;
 
                 if (c.moveToFirst()) {
-                    do{
+                    do {
                         if (tempDay == c.getInt(dayIndex) && tempHour == c.getInt(hourIndex)) {
                             Log.i("If works", "Working");
                             String finalText = c.getString(courseIndex) + "\n" + c.getString(classroomIndex);
                             tempButton.setText(finalText);
                             tempButton.setTextSize(12);
                             tempButton.animate().alpha(1).setDuration(100);
-                        }
-                        else {
+                        } else {
                             Log.i("Else works", "Working");
                             tempButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -251,6 +259,20 @@ public class timetableView extends AppCompatActivity {
                 });
             }
         }
+        Switch switch1=findViewById(R.id.switch1);
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+             {
+
+
+             }
+
+
+            }
+        });
+
 
 
     }
@@ -280,6 +302,46 @@ public class timetableView extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
+
+    public void startThread(View view)
+    {
+
+    }
+    public void startAlarm(Calendar cal,int i) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent=new Intent(timetableView.this,AlertActivity.class);
+        PendingIntent pendingIntent=PendingIntent.getBroadcast(this,i,intent,0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pendingIntent);
+    }
+
+}
+class Alarm implements Runnable
+{
+timetableView tt=new timetableView();
+    @Override
+    public void run() {
+        for (int i = 0; i < 6; i++) {
+
+            for (int j = 0; j < 9; j++) {
+
+
+                TimeSet(i,7+j,i+j);
+
+
+            }
+        }
+    }
+
+    public void TimeSet(int day,int hours,int i) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.DAY_OF_WEEK,day);
+        c.set(Calendar.HOUR_OF_DAY, hours);
+        c.set(Calendar.MINUTE, 45);
+        c.set(Calendar.SECOND,0);
+        tt.startAlarm(c,i);
+    }
+
 
 }
