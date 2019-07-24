@@ -1,29 +1,44 @@
 package com.crux.bphcfreshers;
 
 
+import android.graphics.Camera;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class BPHCMap extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    MapView mapView;
+    View mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bphcmap);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+
+        mapView = findViewById(R.id.mapView);
+        if (mapView != null) {
+            mapView.onCreate(null);
+            mapView.onResume();
+            mapView.getMapAsync(BPHCMap.this);
+
+        }
     }
 
 
@@ -38,9 +53,16 @@ public class BPHCMap extends FragmentActivity implements OnMapReadyCallback {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+//        mMap = googleMap;
         LatLng MBPHC = new LatLng(17.544743, 78.572140);
-        mMap.addMarker(new MarkerOptions().position(MBPHC).title("Welcome to BPHC"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MBPHC,16F));
+//        mMap.addMarker(new MarkerOptions().position(MBPHC).title("Welcome to BPHC"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MBPHC,16F));
+
+        MapsInitializer.initialize(BPHCMap.this);
+        mMap = googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.addMarker(new MarkerOptions().position(MBPHC).title("Welcome to BPHC"));
+        CameraPosition camPos_BPHC = CameraPosition.builder().target(MBPHC).zoom(16F).bearing(0).tilt(45).build();
+        mMap.moveCamera((CameraUpdateFactory.newCameraPosition(camPos_BPHC)));
     }
 }

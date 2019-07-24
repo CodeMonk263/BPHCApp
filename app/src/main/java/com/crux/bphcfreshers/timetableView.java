@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AlertDialog;
@@ -259,24 +260,42 @@ public class timetableView extends AppCompatActivity {
                 });
             }
         }
+        boolean value = true;
+        final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
+        value = sharedPreferences.getBoolean("isChecked", value); // retrieve the value of your key
+
         Switch switch1=findViewById(R.id.switch1);
+        switch1.setChecked(value);
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-             {
+                public void onCheckedChanged (CompoundButton compoundButton,boolean isChecked){
+                    if (isChecked) {
+                        sharedPreferences.edit().putBoolean("isChecked", true).apply();
+                        {
+                            for (int i = 0; i < 6; i++) {
 
 
-             }
+                                for (int j = 0; j < 9; j++) {
+
+                                    TimeSet(i, 15 + j, 3 * i + 2 * j);
 
 
-            }
+                                }
+                            }
+
+                        }
+                    }else {
+                        sharedPreferences.edit().putBoolean("isChecked", false).apply();
+
+                    }
+                }
+
+
+
+
+
         });
-
-
-
-    }
-
+        }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -305,42 +324,19 @@ public class timetableView extends AppCompatActivity {
 
     }
 
-    public void startThread(View view)
-    {
-
-    }
-    public void startAlarm(Calendar cal,int i) {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent=new Intent(timetableView.this,AlertActivity.class);
-        PendingIntent pendingIntent=PendingIntent.getBroadcast(this,i,intent,0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pendingIntent);
-    }
-
-}
-class Alarm implements Runnable
-{
-timetableView tt=new timetableView();
-    @Override
-    public void run() {
-        for (int i = 0; i < 6; i++) {
-
-            for (int j = 0; j < 9; j++) {
-
-
-                TimeSet(i,7+j,i+j);
-
-
-            }
-        }
-    }
-
     public void TimeSet(int day,int hours,int i) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_WEEK,day);
         c.set(Calendar.HOUR_OF_DAY, hours);
         c.set(Calendar.MINUTE, 45);
         c.set(Calendar.SECOND,0);
-        tt.startAlarm(c,i);
+        startAlarm(c,i);
+    }
+    public void startAlarm(Calendar cal,int i) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent=new Intent(timetableView.this,AlertActivity.class);
+        PendingIntent pendingIntent=PendingIntent.getBroadcast(this,i,intent,0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pendingIntent);
     }
 
 

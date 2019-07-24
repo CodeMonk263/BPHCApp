@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/back"
     tools:context=".History">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -21,10 +22,10 @@
 
         <TextView
             android:id="@+id/textView29"
-            android:layout_width="match_parent"
+            android:layout_width="317dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alfa_slab_one"
-            android:text="History"
+            android:text="@string/history"
             android:textColor="#FFFFFF"
             android:textSize="50sp" />
 

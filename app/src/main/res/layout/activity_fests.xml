@@ -4,69 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/festsbg"
     tools:context=".Fests">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+    <LinearLayout
+        android:layout_width="309dp"
+        android:layout_height="707dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button14"
+        <TextView
+            android:id="@+id/textView5"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="65dp"
-            android:text="Verba Maxima"
-            app:layout_constraintBottom_toTopOf="@+id/pearl"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button13" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="BPHC holds 4 major fests during its session.The fests are cool."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/Atmos"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="203dp"
-            android:text="Atmos"
-            app:layout_constraintBottom_toTopOf="@+id/button13"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="25dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <Button
             android:id="@+id/button13"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="66dp"
-            android:layout_marginBottom="62dp"
-            android:text="Arena"
-            app:layout_constraintBottom_toTopOf="@+id/button14"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Atmos" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbg"
+            android:text="Atmos-The TechoManagement Fest" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <Button
-            android:id="@+id/pearl"
+            android:id="@+id/button14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="105dp"
-            android:text="Pearl"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button14" />
+            android:background="@drawable/buttonbg"
+            android:text="Verba Maxima-The Literary Fest" />
 
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="419dp"
-            android:layout_height="141dp"
-            android:layout_marginTop="32dp"
-            android:text="We hold cool Fests"
-            android:textSize="50sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
+        <Button
+            android:id="@+id/button54"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbg"
+            android:text="Arena-The Sports Fest" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/button71"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbg"
+            android:text="Pearl-The Cultural Fest" />
+
+    </LinearLayout>
 </RelativeLayout>
