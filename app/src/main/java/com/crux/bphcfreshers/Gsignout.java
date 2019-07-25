@@ -30,6 +30,11 @@ public class Gsignout extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListner;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListner);
+    }
 
 
     @Override
@@ -41,12 +46,22 @@ public class Gsignout extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mAuth.getCurrentUser() != null) {
-mAuth.signOut();
-                }
+                      mAuth.signOut();
+
             }
 
 });
+
+        mAuthListner = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    startActivity(new Intent(Gsignout.this, CInfoFragment.class));
+                }
+            }
+        };
+
+
     }
 
-}
+    }

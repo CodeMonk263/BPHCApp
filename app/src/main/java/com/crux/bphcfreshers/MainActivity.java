@@ -143,7 +143,7 @@ private FirebaseUser currentUser;
             startActivity(intent);
         }
         else if (id == R.id.signin) {
-            if (mAuth.getCurrentUser() != null) {
+             /*if (mAuth.getCurrentUser() != null) {
                         startActivity(new Intent(MainActivity.this, Gsignout.class));
                     }
                 else
@@ -151,8 +151,11 @@ private FirebaseUser currentUser;
                         Intent intent = new Intent(MainActivity.this, GSigni.class);
                         startActivity(intent);
 
-                    }
-                }
+                    }*/
+            Intent intent = new Intent(MainActivity.this, GSigni.class);
+            startActivity(intent);
+
+        }
 
 
 
