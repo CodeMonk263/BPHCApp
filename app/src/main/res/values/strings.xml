@@ -145,10 +145,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_bphcmap">Map</string>
+    <string name="app_id">1216868208493684</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_id">1216868208493684</string>
     <string name="buy_sell_bphc"><![CDATA[Buy&Sell@BPHC]]></string>
     <string name="title_activity_bphcmaps">Map</string>
 
