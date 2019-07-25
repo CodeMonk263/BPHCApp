@@ -45,7 +45,7 @@ public class GSigni extends AppCompatActivity implements View.OnClickListener{
                 @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(GSigni.this, Gsignout.class));
+                    startActivity(new Intent(GSigni.this, MainActivity.class));
                 }
             }
         };

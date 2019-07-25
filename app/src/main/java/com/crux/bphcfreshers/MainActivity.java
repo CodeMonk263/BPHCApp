@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity<var> extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
 
@@ -93,16 +94,28 @@ private FirebaseUser currentUser;
         fragmentTransaction.replace(R.id.screenMain, new CInfoFragment());
         fragmentTransaction.commit();
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String name="Profile Name" ;
+        String email="f20xxxxxx@bits-pilani.hyderabadcampus.ac.in" ;
+        Uri photoUrl;
+        if (user != null) {
+            // Name, email address, and profile photo Url
+             name = user.getDisplayName();
+            email = user.getEmail();
+            photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
 
 
-
+        }
 
     }
-
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -143,7 +156,7 @@ private FirebaseUser currentUser;
             startActivity(intent);
         }
         else if (id == R.id.signin) {
-             /*if (mAuth.getCurrentUser() != null) {
+             if (mAuth.getCurrentUser() != null) {
                         startActivity(new Intent(MainActivity.this, Gsignout.class));
                     }
                 else
@@ -151,9 +164,9 @@ private FirebaseUser currentUser;
                         Intent intent = new Intent(MainActivity.this, GSigni.class);
                         startActivity(intent);
 
-                    }*/
-            Intent intent = new Intent(MainActivity.this, GSigni.class);
-            startActivity(intent);
+                    }
+            /*Intent intent = new Intent(MainActivity.this, GSigni.class);
+            startActivity(intent);*/
 
         }
 
@@ -171,9 +184,10 @@ private FirebaseUser currentUser;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+     // you have one. Use User.getToken() instead.
+    }
 
 
 
-}
 
 
