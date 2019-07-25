@@ -45,6 +45,12 @@
                 android:id="@+id/facebook"
                 android:icon="@drawable/ic_people_black_24dp"
                 android:title="Facebook" />
+            <item
+                android:id="@+id/signin"
+                android:icon="@drawable/ic_people_black_24dp"
+                android:title="Google Acoount" />
+
+
         </menu>
     </item>
 

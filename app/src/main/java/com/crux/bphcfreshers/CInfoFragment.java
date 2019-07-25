@@ -46,7 +46,7 @@ public class CInfoFragment extends Fragment implements View.OnClickListener {
                openClub();
                 break;
             case R.id.button7:
-               openNearby();
+               openFests();
                 break;
         }
     }
@@ -64,7 +64,7 @@ public class CInfoFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public void openNearby() {
+    public void openFests() {
         Intent intent = new Intent(CInfoFragment.this.getActivity(), Fests.class);
         startActivity(intent);
 

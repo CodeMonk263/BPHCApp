@@ -27,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
@@ -263,6 +264,7 @@ public class timetableView extends AppCompatActivity {
         boolean value = true;
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
         value = sharedPreferences.getBoolean("isChecked", value); // retrieve the value of your key
+        final Random rand =new Random();
 
         Switch switch1=findViewById(R.id.switch1);
         switch1.setChecked(value);
@@ -271,13 +273,13 @@ public class timetableView extends AppCompatActivity {
                 public void onCheckedChanged (CompoundButton compoundButton,boolean isChecked){
                     if (isChecked) {
                         sharedPreferences.edit().putBoolean("isChecked", true).apply();
-                        {
+                        {int random=rand.nextInt();
                             for (int i = 0; i < 6; i++) {
 
 
                                 for (int j = 0; j < 9; j++) {
 
-                                    TimeSet(i, 15 + j, 3 * i + 2 * j);
+                                    TimeSet(i, 5 + j, 3 * i + 2 * j+random);
 
 
                                 }

@@ -17,29 +17,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -51,7 +33,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
 
-
+    private FirebaseAuth mAuth;
+private FirebaseUser currentUser;
+    FirebaseAuth.AuthStateListener mAuthListner;
 
     public void URLopener(String url) {
 
@@ -108,6 +92,8 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.screenMain, new CInfoFragment());
         fragmentTransaction.commit();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
 
 
@@ -156,6 +142,20 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, FacebookLinks.class);
             startActivity(intent);
         }
+        else if (id == R.id.signin) {
+            if (mAuth.getCurrentUser() != null) {
+                        startActivity(new Intent(MainActivity.this, Gsignout.class));
+                    }
+                else
+                    {
+                        Intent intent = new Intent(MainActivity.this, GSigni.class);
+                        startActivity(intent);
+
+                    }
+                }
+
+
+
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();

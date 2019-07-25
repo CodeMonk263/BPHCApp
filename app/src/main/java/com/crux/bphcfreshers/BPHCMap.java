@@ -1,15 +1,11 @@
 package com.crux.bphcfreshers;
 
-
-import android.graphics.Camera;
-import android.os.Bundle;
-import android.view.View;
-
 import androidx.fragment.app.FragmentActivity;
+
+import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -20,25 +16,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class BPHCMap extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    MapView mapView;
-    View mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bphcmap);
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-
-        mapView = findViewById(R.id.mapView);
-        if (mapView != null) {
-            mapView.onCreate(null);
-            mapView.onResume();
-            mapView.getMapAsync(BPHCMap.this);
-
-        }
+        setContentView(R.layout.activity_bphcmaps);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
 

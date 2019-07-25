@@ -42,10 +42,10 @@ public class GSigni extends AppCompatActivity implements View.OnClickListener{
         SignInButton SignButton = (SignInButton) findViewById(R.id.sign_in_button);
         SignButton.setOnClickListener(this);
         mAuthListner = new FirebaseAuth.AuthStateListener() {
-            @Override
+                @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(GSigni.this, CInfoFragment.class));
+                    startActivity(new Intent(GSigni.this, Gsignout.class));
                 }
             }
         };
