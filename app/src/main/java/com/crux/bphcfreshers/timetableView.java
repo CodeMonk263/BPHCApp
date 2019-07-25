@@ -261,7 +261,7 @@ public class timetableView extends AppCompatActivity {
                 });
             }
         }
-        boolean value = true;
+        boolean value = false;
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
         value = sharedPreferences.getBoolean("isChecked", value); // retrieve the value of your key
         final Random rand =new Random();

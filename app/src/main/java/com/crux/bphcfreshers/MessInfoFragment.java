@@ -140,17 +140,24 @@ public class MessInfoFragment extends Fragment {
                     "'Salad, Roti, Steamed Rice, Curd, Sambhar/Rasam, Papad/Fryums, Chutney Veg pullav, Jeera Dal Fry, Black Channa Masala(curry), Corn Palak Gulab Jamun'," +
                     "'Milk, Tea, Coffee Biscuits Pani Puri / Dahi Bhalla Papdi Chaat (Alternate)'," +
                     "'Salad, Roti, Steamed Rice, Curd, Sambhar/Rasam, Pickel Kashmiri Pulao, Dal Tadka, Kadhai Paneer, Butter Chicken, Veg biryani, Boondi Raita Rice Kheer')");
-//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (4," +
-//                    "''," +
-//                    "''," +
-//                    "''," +
-//                    "'')");
-//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (5," +
-//                    "''," +
-//                    "''," +
-//                    "''," +
-//                    "'')");
-//            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (6," +
+            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (4," +
+                    "'Milk, Tea, Coffee, Sprouts Mysore Bonda/Punugulu, Chutney Onion Aloo Parantha, Curd, Pickel Bread Butter Bournvita'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Papad/Fryums, Chutney Matar Pulao, Arhar Dal, Chole, Bhindi Fry, Methi Puri, Boondi Raita'," +
+                    "'Milk, Tea, Coffee Rusk Pasta (Red/White) (Alternate)'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Pickle, Tomato Dal, Malai Kofta / Mattar Malai , Ridge guard dry Besan Barfi')");
+            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (5," +
+                    "'Milk, Tea, Coffee, Sprouts Mysore Bonda/Punugulu, Chutney Onion Aloo Parantha, Curd, Pickel Bread Butter Bournvita'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Papad/Fryums, Chutney Matar Pulao, Arhar Dal, Chole, Bhindi Fry, Methi Puri, Boondi Raita'," +
+                    "'Milk, Tea, Coffee Rusk Pasta (Red/White) (Alternate)'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Pickle, Tomato Dal, Malai Kofta / Mattar Malai , Ridge guard dry Besan Barfi')");
+            messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (6," +
+                    "'Milk, Tea, Coffee, Sprouts Mysore Bonda/Punugulu, Chutney Onion Aloo Parantha, Curd, Pickel Bread Butter Bournvita'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Papad/Fryums, Chutney Matar Pulao, Arhar Dal, Chole, Bhindi Fry, Methi Puri, Boondi Raita'," +
+                    "'Milk, Tea, Coffee Rusk Pasta (Red/White) (Alternate)'," +
+                    "'Salad, Roti, Steamed Rice, Curd Sambhar/Rasam, Pickle, Tomato Dal, Malai Kofta / Mattar Malai , Ridge guard dry Besan Barfi')");
+
+
+          //  messDB.execSQL("INSERT INTO messmenudata (day, breakfast, lunch, snacks, dinner) VALUES (6," +
 //                    "''," +
 //                    "''," +
 //                    "''," +
