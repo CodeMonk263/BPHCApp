@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -99,23 +100,20 @@ private FirebaseUser currentUser;
         String email="f20xxxxxx@bits-pilani.hyderabadcampus.ac.in" ;
         Uri photoUrl;
         if (user != null) {
-            // Name, email address, and profile photo Url
              name = user.getDisplayName();
             email = user.getEmail();
             photoUrl = user.getPhotoUrl();
 
-            // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
+
+         // TextView uname= findViewById(R.id.username);
 
         }
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
